@@ -95,7 +95,7 @@ document.body.append(productCard);
 However, when the page loads and the code is executed, the user isn't able to see the image, product name or product price. What is the issue with this code?
 
 **Your Answer:**
-
+<!-- its because its supposed to be document.img -->
 
 ## Question 4: Event Delegation and event.target.closest()
 
@@ -135,7 +135,9 @@ todoList.addEventListener('click', (event) => {
 2. Explain what the `event.target.closest('li')` method does and why it is essential to this approach.
 
 **Your Answer:**
-
+<!-- 
+Anything thats closest to li is going to click and work
+ -->
 ## Question 5: NodeList
 
 Do some independent learning and reading about the `querySelectorAll()` method. Then, answer these questions:
