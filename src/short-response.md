@@ -37,6 +37,10 @@ But an error is thrown.
 
 **Your Answer:**
 
+1. The error is `Uncaught TypeError: Cannot read properties of null (reading 'style')` 
+2. This occur Because the script runs before the DOM loads, so querySelector returns null since the button doesn’t exist yet.
+3. Moving the script to the bottom of the body will fix the error because that ensures the DOM is loaded before the JavaScript runs.
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -60,6 +64,11 @@ div.addEventListener('click', (event) => {
 When a user clicks the button, both `event.target` and `event.currentTarget` are logged. Explain what each property represents in this scenario and why they might be different.
 
 **Your Answer:**
+`event.target` is the element that was actually clicked. In this case, it’s the <button> because the user clicked the button.
+
+`event.currentTarget` is the element that has the event listener attached. Here, it’s the <div id="button-container">.
+
+They can be different because of how events move through the DOM. When you click the button, the click starts on the button and then goes up to the parent div that has the event listener. So event.target is the button you clicked, and event.currentTarget is the div where the event is being handled.
 
 ## Question 3: Creating Elements Dynamically
 
@@ -96,6 +105,7 @@ However, when the page loads and the code is executed, the user isn't able to se
 
 **Your Answer:**
 
+The issue is that the elements were created but never added inside the `productCard div`. You only appended `productCard` to the body, but you didn’t append `productImage`, `productName`, and `productPrice` inside `productCard`.
 
 ## Question 4: Event Delegation and event.target.closest()
 
@@ -136,6 +146,10 @@ todoList.addEventListener('click', (event) => {
 
 **Your Answer:**
 
+1. This is called event delegation. The alternative is attaching event listeners to each <li> individually. Event delegation is better because it uses one event listener on the parent element instead of many listeners, which is more efficient and easier to manage.
+
+2. event.target.closest('li') finds the nearest <li> element related to the clicked element. It is important because users might click on elements inside the <li> (like the <p> tags), so closest() ensures we still get the correct <li> even if the click wasn’t directly on it.
+
 ## Question 5: NodeList
 
 Do some independent learning and reading about the `querySelectorAll()` method. Then, answer these questions:
@@ -144,3 +158,7 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 2. What is the difference between a `NodeList` and an array? Why is it important to know this difference?
 
 **Your Answer:**
+
+1. querySelector() returns the first matching element it finds, while querySelectorAll() returns all matching elements as a NodeList. You would use querySelectorAll() when you want to select and work with multiple elements, like selecting all list items in a todo list.
+
+2. A NodeList is a collection of DOM nodes returned by querySelectorAll(), but it is not a true array, so array methods like map() or filter() don’t work directly. It’s important to know this so you can convert it to an array if you need array methods.
